@@ -1,39 +1,137 @@
-/* Custom Properties for easy color change */
-:root {
-    --color-primary: #FFD833; /* Yellow */
-    --color-text-dark: #111111; /* Near Black */
-    --color-background-dark: #111111; /* Global Dark Background */
-    --color-background-section: #1A1A1A; /* Slightly lighter dark for contrast sections */
-    --color-text-light: #F9F9F9; /* Off White for text */
-    --color-divider: #333333; /* For section lines */
-    --font-primary: 'Arial', sans-serif;
+/* ... (Existing CSS :root variables and global styles remain the same) ... */
+
+/* --- Header & Navigation (Updated for Mobile) --- */
+
+/* Hide desktop nav on small screens */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body.dark-theme { /* Apply dark theme globally */
-    font-family: var(--font-primary);
-    line-height: 1.6;
+/* Open Button for Sidebar */
+.openbtn {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
     color: var(--color-text-light);
-    background-color: var(--color-background-dark);
+    border: none;
+    padding: 0;
+    /* Only show hamburger on mobile */
+    display: none; 
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+@media (max-width: 768px) {
+    .openbtn {
+        display: block; 
+    }
 }
 
-/* --- Header & Navigation (Modern Dark Look) --- */
-header {
-    background: var(--color-background-dark);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 15px 40px;
-    display: flex;
+/* ------------------------------------------------ */
+/* SIDEBAR MENU STYLING (The Mobile Menu)           */
+/* ------------------------------------------------ */
+
+.sidebar {
+    height: 100%;
+    width: 0; /* Starts closed */
+    position: fixed;
+    z-index: 10; 
+    top: 0;
+    left: 0;
+    background-color: var(--color-background-dark); 
+    overflow-x: hidden;
+    transition: 0.5s; 
+    padding-top: 60px;
+    border-right: 2px solid var(--color-divider);
+}
+
+.sidebar-heading {
+    color: var(--color-primary);
+    font-size: 1.1em;
+    padding: 15px 25px 5px 25px;
+    border-bottom: 1px solid var(--color-divider);
+    margin-top: 15px;
+}
+.sidebar-heading.mt-20 {
+    margin-top: 20px;
+}
+
+.sidebar-item {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: var(--color-text-light);
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.sidebar-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-item:hover {
+    color: var(--color-primary);
+    background-color: #222;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: var(--color-text-light);
+}
+.closebtn:hover {
+    color: var(--color-primary);
+}
+
+.btn-sidebar-cta {
+    /* Style the CTA link differently */
+    background-color: var(--color-primary);
+    color: var(--color-text-dark) !important;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 0;
+    text-align: center;
+}
+.btn-sidebar-cta:hover {
+    background-color: #FFC000;
+}
+
+
+/* ------------------------------------------------ */
+/* MAIN CONTENT MOVEMENT (The Push Effect)          */
+/* ------------------------------------------------ */
+.main-content {
+    transition: margin-left .5s; 
+}
+
+/* --- Media Queries for Sidebar Behavior --- */
+
+/* Large Screens: Sidebar is only shown on click, pushing content */
+@media (min-width: 769px) {
+    /* Set a standard sidebar width for desktop */
+    .sidebar {
+        width: 300px;
+    }
+}
+
+/* Small Screens (Mobile): Sidebar covers the entire screen for better navigation */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        border-right: none;
+    }
+    /* Disable the push effect on mobile as it covers the screen */
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+
+/* ... (Rest of the application CSS continues below) ... */
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--color-divider);
