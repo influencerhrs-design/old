@@ -1,39 +1,69 @@
+<!DOCTYPE html>
 <html lang="en">
-
-<head></head>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hrs.jobs | Free Job Posting Platform - Find Your Next Career</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
 <body>
 
-    <meta charset="UTF-8">
+    <header>
+        <div class="logo">
+            <span class="logo-hrs">hrs.</span><span class="logo-jobs">jobs</span>
+        </div>
+        <nav>
+            <a href="#jobs">Jobs</a>
+            <a href="#recruiters">For Recruiters</a>
+            <a href="mailto:hrs.team.a@gmail.com" class="btn-primary">Post a Job (Free)</a>
+        </nav>
+    </header>
 
+    <section class="hero-section">
+        <h1>Find Your Next Great Opportunity.</h1>
+        <p>hrs.jobs connects top talent with companies, completely free for recruiters.</p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by job title, company, or keyword...">
+            <button onclick="filterJobs()">Search</button>
+        </div>
+    </section>
 
+    <section id="jobs" class="job-listings">
+        <h2>Latest Job Openings</h2>
+        <div id="jobContainer" class="job-container">
+            </div>
+        <p class="no-jobs" id="noJobsMessage" style="display:none;">No jobs match your search. Try a different keyword!</p>
+    </section>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Resource Support - Influencer Marketing, Jobs &amp; Thrift Fashion</title>
-    <meta name="description" content="Your one-stop platform for influencer marketing jobs, career opportunities, and sustainable thrift fashion shopping">
-    <meta name="keywords" content="influencer marketing, job board, thrift shopping, sustainable fashion, career opportunities">
-    <meta property="og:title" content="Human Resource Support - Influencer Marketing, Jobs &amp; Thrift Fashion">
-    <meta property="og:description" content="Your one-stop platform for influencer marketing jobs, career opportunities, and sustainable thrift fashion shopping">
-    <meta name="twitter:title" content="Human Resource Support - Influencer Marketing, Jobs &amp; Thrift Fashion">
-    <meta name="twitter:description" content="Your one-stop platform for influencer marketing jobs, career opportunities, and sustainable thrift fashion shopping">
+    <section id="recruiters" class="recruiters-section">
+        <div class="container">
+            <h2>Hiring Made Simple and Free.</h2>
+            <p>Post your job to a global talent pool without any subscription or fee. We keep the process simple and focused.</p>
+            <a href="mailto:hrs.team.a@gmail.com?subject=JOB%20POSTING%20REQUEST%20|%20[Company%20Name]%20|%20[Job%20Title]" class="btn-secondary">
+                Email Your Free Job Posting Request
+            </a>
+            <p class="small-text">Send details to: **hrs.team.a@gmail.com**</p>
+        </div>
+    </section>
 
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <footer>
+        <div class="footer-links">
+            <a href="www.hrs.jobs.xyz" target="_blank">Website Link</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="social-links">
+            <a href="[Link to WhatsApp Group/Business]" target="_blank" aria-label="WhatsApp">📞 WhatsApp</a>
+            <a href="[Link to Instagram Profile]" target="_blank" aria-label="Instagram">📸 Instagram</a>
+            <a href="[Link to YouTube Channel]" target="_blank" aria-label="YouTube">▶️ YouTube</a>
+        </div>
+        <p>&copy; 2025 hrs.jobs. All rights reserved.</p>
+    </footer>
 
-    <style type="text/tailwindcss">
-        @layer theme {
-        :root {
-            --primary-color: #fbbf24;
-            --secondary-color: #f59e0b;
-            --accent-color: #fcd34d;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-light: #fffbeb;
-        }
-    }
+    <script src="script.js"></script>
+</body>
+</html>
 
     @layer base {
         body {
