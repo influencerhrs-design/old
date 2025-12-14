@@ -1,137 +1,41 @@
-/* ... (Existing CSS :root variables and global styles remain the same) ... */
-
-/* --- Header & Navigation (Updated for Mobile) --- */
-
-/* Hide desktop nav on small screens */
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
+/* Custom Properties for easy color change */
+:root {
+    --color-primary: #FFD833; /* Yellow */
+    --color-text-dark: #111111; /* Near Black */
+    --color-background-dark: #111111; /* Global Dark Background */
+    --color-background-section: #1A1A1A; /* Slightly lighter dark for contrast sections */
+    --color-text-light: #F9F9F9; /* Off White for text */
+    --color-divider: #333333; /* For section lines */
+    --font-primary: 'Arial', sans-serif;
+    --color-subscribe-cta: #E74C3C; /* Bold Red for Subscribe button */
+    --color-white: #FFFFFF;
 }
 
-/* Open Button for Sidebar */
-.openbtn {
-    font-size: 25px;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--color-text-light);
-    border: none;
+* {
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
-    /* Only show hamburger on mobile */
-    display: none; 
 }
 
-@media (max-width: 768px) {
-    .openbtn {
-        display: block; 
-    }
-}
-
-/* ------------------------------------------------ */
-/* SIDEBAR MENU STYLING (The Mobile Menu)           */
-/* ------------------------------------------------ */
-
-.sidebar {
-    height: 100%;
-    width: 0; /* Starts closed */
-    position: fixed;
-    z-index: 10; 
-    top: 0;
-    left: 0;
-    background-color: var(--color-background-dark); 
-    overflow-x: hidden;
-    transition: 0.5s; 
-    padding-top: 60px;
-    border-right: 2px solid var(--color-divider);
-}
-
-.sidebar-heading {
-    color: var(--color-primary);
-    font-size: 1.1em;
-    padding: 15px 25px 5px 25px;
-    border-bottom: 1px solid var(--color-divider);
-    margin-top: 15px;
-}
-.sidebar-heading.mt-20 {
-    margin-top: 20px;
-}
-
-.sidebar-item {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 1.1em;
+body.dark-theme { 
+    font-family: var(--font-primary);
+    line-height: 1.6;
     color: var(--color-text-light);
-    display: block;
-    transition: 0.3s;
-    border-bottom: 1px solid var(--color-divider);
+    background-color: var(--color-background-dark);
 }
 
-.sidebar-item:last-child {
-    border-bottom: none;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.sidebar-item:hover {
-    color: var(--color-primary);
-    background-color: #222;
-}
-
-.closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    text-decoration: none;
-    color: var(--color-text-light);
-}
-.closebtn:hover {
-    color: var(--color-primary);
-}
-
-.btn-sidebar-cta {
-    /* Style the CTA link differently */
-    background-color: var(--color-primary);
-    color: var(--color-text-dark) !important;
-    font-weight: bold;
-    margin-top: 10px;
-    border-radius: 0;
-    text-align: center;
-}
-.btn-sidebar-cta:hover {
-    background-color: #FFC000;
-}
-
-
-/* ------------------------------------------------ */
-/* MAIN CONTENT MOVEMENT (The Push Effect)          */
-/* ------------------------------------------------ */
-.main-content {
-    transition: margin-left .5s; 
-}
-
-/* --- Media Queries for Sidebar Behavior --- */
-
-/* Large Screens: Sidebar is only shown on click, pushing content */
-@media (min-width: 769px) {
-    /* Set a standard sidebar width for desktop */
-    .sidebar {
-        width: 300px;
-    }
-}
-
-/* Small Screens (Mobile): Sidebar covers the entire screen for better navigation */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        border-right: none;
-    }
-    /* Disable the push effect on mobile as it covers the screen */
-    .main-content {
-        margin-left: 0 !important;
-    }
-}
-
-/* ... (Rest of the application CSS continues below) ... */
+/* --- Header & Navigation --- */
+header {
+    background: var(--color-background-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 15px 40px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--color-divider);
@@ -165,7 +69,7 @@ nav a:hover {
 /* --- Buttons --- */
 .btn-primary, .btn-secondary {
     padding: 10px 20px;
-    border-radius: 4px; /* Slightly sharper edges for modern feel */
+    border-radius: 4px; 
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
@@ -195,7 +99,6 @@ nav a:hover {
     color: var(--color-primary);
 }
 
-
 /* --- Hero Section --- */
 .hero-section {
     background-color: var(--color-background-dark);
@@ -204,7 +107,7 @@ nav a:hover {
 }
 
 .hero-section h1 {
-    font-size: 3.5em; /* Bigger, bolder text */
+    font-size: 3.5em; 
     margin-bottom: 15px;
     color: var(--color-white);
 }
@@ -216,191 +119,12 @@ nav a:hover {
 }
 
 .search-bar {
-    background: var(--color-background-section);
-    border: 1px solid var(--color-divider);
-    border-radius: 8px;
-}
-
-.search-bar input {
-    background: transparent;
-    color: var(--color-text-light);
-}
-
-.search-bar button {
-    background-color: var(--color-primary);
-    color: var(--color-text-dark);
-}
-
-
-/* --- Job Listings Section (Modern Dark Cards) --- */
-.job-listings {
-    background-color: var(--color-background-section); /* Use slightly lighter dark for contrast */
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.job-listings h2 {
-    color: var(--color-white);
-}
-
-/* Job Card Styling */
-.job-card {
-    background: var(--color-background-dark);
-    border: 1px solid var(--color-divider);
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.job-card:hover {
-    /* Subtle glow effect on hover */
-    box-shadow: 0 0 15px rgba(255, 216, 51, 0.3);
-    border-color: var(--color-primary);
-    transform: none; /* Keep it flat and modern */
-}
-
-.job-card h3 {
-    color: var(--color-white);
-}
-
-.job-card .company-name {
-    color: #AAAAAA;
-}
-
-.meta-tag {
-    background-color: #222222; /* Dark tags */
-    color: #CCCCCC;
-}
-
-.salary-tag {
-    background-color: var(--color-primary);
-    color: var(--color-text-dark);
-    font-weight: 700;
-}
-
-.apply-link a {
-    color: var(--color-primary);
-}
-
-.apply-link a:hover {
-    color: var(--color-white);
-}
-
-.no-jobs {
-    color: #AAAAAA;
-}
-
-/* --- Recruiters Section --- */
-.recruiters-section {
-    background-color: var(--color-background-dark);
-    padding: 60px 20px;
-}
-
-.recruiters-section h2 {
-    color: var(--color-primary);
-}
-
-.recruiters-section p {
-    color: var(--color-text-light);
-}
-
-
-/* --- Footer (Existing Dark Link Style CSS is reused/integrated) --- */
-
-.dark-footer {
-    background-color: var(--color-background-dark); /* Ensure footer is the primary dark color */
-    color: var(--color-footer-text);
-    padding: 40px 20px 20px;
-    border-top: 1px solid var(--color-divider);
-}
-/* ... (Rest of the footer CSS from the previous step remains effective) ... */
-}
-
-.logo {
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
-.logo-hrs {
-    color: var(--color-text-dark);
-}
-
-.logo-jobs {
-    color: var(--color-primary);
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--color-text-dark);
-    margin-left: 25px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: var(--color-primary);
-}
-
-/* --- Buttons --- */
-.btn-primary, .btn-secondary {
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid transparent;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-dark);
-}
-
-.btn-primary:hover {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
-}
-
-.btn-secondary {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
-    margin-top: 20px;
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-text-dark);
-}
-
-
-/* --- Hero Section --- */
-.hero-section {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.hero-section h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: var(--color-primary);
-}
-
-.hero-section p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    color: #CCCCCC;
-}
-
-.search-bar {
     display: flex;
     justify-content: center;
     max-width: 600px;
     margin: 0 auto;
-    background: var(--color-white);
+    background: var(--color-background-section);
+    border: 1px solid var(--color-divider);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -411,6 +135,8 @@ nav a:hover {
     border: none;
     font-size: 1em;
     outline: none;
+    background: transparent;
+    color: var(--color-text-light);
 }
 
 .search-bar button {
@@ -424,14 +150,10 @@ nav a:hover {
     transition: background-color 0.3s;
 }
 
-.search-bar button:hover {
-    background-color: #FFC000;
-}
-
-
 /* --- Job Listings Section --- */
 .job-listings {
-    padding: 50px 20px;
+    background-color: var(--color-background-section);
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -440,7 +162,7 @@ nav a:hover {
     text-align: center;
     margin-bottom: 40px;
     font-size: 2em;
-    color: var(--color-text-dark);
+    color: var(--color-white);
 }
 
 .job-container {
@@ -449,21 +171,20 @@ nav a:hover {
     gap: 30px;
 }
 
-/* Job Card Styling */
 .job-card {
-    background: var(--color-white);
-    border: 1px solid #E0E0E0;
+    background: var(--color-background-dark);
+    border: 1px solid var(--color-divider);
     border-radius: 8px;
     padding: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
 }
 
 .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(255, 216, 51, 0.3);
+    border-color: var(--color-primary);
 }
 
 .company-logo {
@@ -476,13 +197,13 @@ nav a:hover {
 
 .job-card h3 {
     font-size: 1.3em;
-    color: var(--color-text-dark);
+    color: var(--color-white);
     margin-bottom: 5px;
 }
 
 .job-card .company-name {
     font-size: 1em;
-    color: #666;
+    color: #AAAAAA;
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -495,8 +216,8 @@ nav a:hover {
 }
 
 .meta-tag {
-    background-color: #EEEEEE;
-    color: #444;
+    background-color: #222222;
+    color: #CCCCCC;
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 0.85em;
@@ -506,10 +227,11 @@ nav a:hover {
 .salary-tag {
     background-color: var(--color-primary);
     color: var(--color-text-dark);
+    font-weight: 700;
 }
 
 .apply-link {
-    margin-top: auto; /* Pushes the button to the bottom */
+    margin-top: auto; 
     text-align: right;
 }
 
@@ -521,20 +243,19 @@ nav a:hover {
 }
 
 .apply-link a:hover {
-    color: var(--color-text-dark);
+    color: var(--color-white);
 }
 
 .no-jobs {
     text-align: center;
     font-size: 1.2em;
-    color: #666;
+    color: #AAAAAA;
     padding: 50px 0;
 }
 
 /* --- Recruiters Section --- */
 .recruiters-section {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
+    background-color: var(--color-background-dark);
     padding: 60px 20px;
     text-align: center;
 }
@@ -549,84 +270,144 @@ nav a:hover {
     font-size: 1.1em;
     max-width: 800px;
     margin: 0 auto 30px;
+    color: var(--color-text-light);
 }
 
-.recruiters-section .small-text {
+/* --- Sidebar Styles --- */
+
+.openbtn {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: none;
+    padding: 0;
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    .openbtn {
+        display: block; 
+    }
+}
+
+.sidebar {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 10; 
+    top: 0;
+    left: 0;
+    background-color: var(--color-background-dark); 
+    overflow-x: hidden;
+    transition: 0.5s; 
+    padding-top: 60px;
+    border-right: 2px solid var(--color-divider);
+    display: none; /* Initially hidden */
+}
+
+.sidebar-heading {
+    color: var(--color-primary);
+    font-size: 1.1em;
+    padding: 15px 25px 5px 25px;
+    border-bottom: 1px solid var(--color-divider);
     margin-top: 15px;
-    font-size: 0.9em;
-    color: #AAA;
+}
+.sidebar-heading.mt-20 {
+    margin-top: 20px;
 }
 
-
-/* --- Footer --- */
-footer {
-    background-color: var(--color-white);
-    color: #666;
-    padding: 30px 20px;
-    text-align: center;
-    border-top: 1px solid #E0E0E0;
-}
-
-.footer-links a {
-    color: #666;
+.sidebar-item {
+    padding: 15px 25px;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.9em;
-    transition: color 0.3s;
+    font-size: 1.1em;
+    color: var(--color-text-light);
+    display: flex; /* Use flex for arrow */
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    border-bottom: 1px solid var(--color-divider);
 }
 
-.footer-links a:hover {
-    color: var(--color-text-dark);
+.sidebar-item::after {
+    content: '▶'; 
+    font-size: 0.7em;
+    color: var(--color-divider);
+    margin-left: 10px;
+    transition: color 0.3s, transform 0.3s;
 }
 
-.social-links {
-    margin: 15px 0;
+.sidebar-item:hover {
+    color: var(--color-primary);
+    background-color: #222;
 }
 
-.social-links a {
-    color: var(--color-text-dark);
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
+.sidebar-item:hover::after {
     color: var(--color-primary);
 }
 
-footer p {
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: var(--color-text-light);
+}
+.closebtn:hover {
+    color: var(--color-primary);
+}
+
+.btn-sidebar-cta {
+    background-color: var(--color-primary);
+    color: var(--color-text-dark) !important;
+    font-weight: bold;
     margin-top: 10px;
-    font-size: 0.85em;
+    text-align: center;
 }
-/* Custom Properties for easy color change */
-:root {
-    --color-primary: #FFD833; /* Yellow */
-    --color-text-dark: #111111; /* Near Black */
-    --color-background-light: #F9F9F9; /* Off White */
-    --color-white: #FFFFFF;
-    /* Updated colors for the dark link-style footer */
-    --color-footer-bg: #111111; /* Darker than previous */
-    --color-footer-text: #E0E0E0; /* Lighter for contrast */
-    --color-divider: #333333; /* For section lines */
-    --font-primary: 'Arial', sans-serif;
+.btn-sidebar-cta:hover {
+    background-color: #FFC000;
 }
 
-/* ... (Previous header and hero CSS remains the same) ... */
+.main-content {
+    margin-top: 0; 
+    transition: margin-left .5s; 
+}
+
+@media (min-width: 769px) {
+    .sidebar {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        border-right: none;
+    }
+    .main-content {
+        margin-left: 0 !important;
+        margin-top: 0;
+    }
+}
 
 
-/* --- UPDATED PROFESSIONAL DARK FOOTER STYLING --- */
+/* --- Footer Styles (Dark Link Style) --- */
 
 .dark-footer {
-    /* Background matches the look of the reference image */
-    background-color: var(--color-footer-bg); 
-    color: var(--color-footer-text);
+    background-color: var(--color-background-dark); 
+    color: #B0B0B0;
     padding: 40px 20px 20px;
+    border-top: 1px solid var(--color-divider);
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     padding-bottom: 30px;
 }
@@ -634,7 +415,6 @@ footer p {
 .footer-col h3 {
     color: var(--color-white);
     font-size: 1.1em;
-    /* Spacing adjusted for the stacked link style */
     margin-bottom: 5px; 
     padding: 10px 0;
     font-weight: bold;
@@ -643,19 +423,13 @@ footer p {
     margin-top: 20px;
 }
 
-/* ------------------------------------------------ */
-/* STYLING THE LINKS TO LOOK LIKE THE MOBILE MENU   */
-/* ------------------------------------------------ */
-
 .footer-col ul {
     list-style: none;
     padding: 0;
 }
 
 .footer-col ul li {
-    /* Adding padding to make rows thick like in the image */
     padding: 10px 0;
-    /* Adding a bottom line for separation */
     border-bottom: 1px solid var(--color-divider); 
 }
 
@@ -664,22 +438,22 @@ footer p {
 }
 
 .footer-col ul li a {
-    color: var(--color-footer-text);
+    color: #E0E0E0;
     text-decoration: none;
     font-size: 1em;
-    display: flex; /* Allows positioning of the arrow */
+    display: flex; 
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0; /* Padding inside the list item */
+    padding: 5px 0; 
 }
 
-/* Adding the right-facing arrow (>) using ::after pseudo-element */
+/* Arrow indicator for footer links */
 .footer-col ul li a::after {
-    content: '▶'; /* Unicode for black right-pointing pointer */
+    content: '▶'; 
     font-size: 0.7em;
     color: var(--color-divider);
     margin-left: 10px;
-    transition: color 0.3s, transform 0.3s;
+    transition: color 0.3s;
 }
 
 .footer-col ul li a:hover {
@@ -688,28 +462,47 @@ footer p {
 
 .footer-col ul li a:hover::after {
     color: var(--color-primary);
-    transform: translateX(3px);
 }
 
-/* Subscribe Section Styling (Updated to Dark Theme) */
+/* Subscribe Section */
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+}
+
 .subscribe-form input[type="email"] {
-    background-color: #222; /* Darker input field */
+    padding: 12px 15px;
     border: 1px solid #444;
+    background-color: #222;
+    color: var(--color-white);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1em;
 }
 
 .btn-subscribe {
-    background-color: var(--color-primary); /* Using yellow for primary CTA */
-    color: var(--color-text-dark);
+    background-color: var(--color-subscribe-cta); /* Red */
+    color: var(--color-white);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
 }
 
 .btn-subscribe:hover {
-    background-color: #FFC000;
+    background-color: #C0392B;
 }
 
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
 
-/* Social Icons (Updated to fit dark theme) */
 .social-icons a {
-    color: var(--color-footer-text);
+    color: #E0E0E0;
     font-size: 1.8em;
     transition: color 0.3s;
 }
@@ -718,21 +511,156 @@ footer p {
     color: var(--color-primary);
 }
 
-/* Disclaimer Section */
 .footer-disclaimer hr {
-    background-color: var(--color-divider);
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    margin-bottom: 20px;
 }
 
-/* Media Query for Responsiveness */
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr; /* Stack all columns vertically on mobile */
-    }
-    
-    /* On mobile, we might want stronger separation between columns/sections */
-    .footer-col:not(:last-child) {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--color-divider);
-    }
+.footer-disclaimer p {
+    font-size: 0.8em;
+    color: #888;
+}
+
+/* --- Styles for General Content Pages (About, Contact, FAQs) --- */
+
+.page-content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 80vh; 
+}
+
+.page-title {
+    font-size: 3em;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.content-block {
+    background-color: var(--color-background-section);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--color-divider);
+}
+
+.content-block h2 {
+    color: var(--color-white);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 5px;
+}
+
+.content-block p, .content-block li {
+    color: #CCCCCC;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.content-block ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.cta-block {
+    text-align: center;
+    background-color: var(--color-background-dark);
+    padding: 40px;
+    border: 1px dashed var(--color-primary);
+}
+
+/* --- Contact Page Specific Styles --- */
+
+.contact-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-background-dark);
+    border-radius: 8px;
+    border: 1px solid var(--color-divider);
+}
+
+.contact-item i {
+    font-size: 2.5em;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.contact-link {
+    display: block;
+    margin-top: 10px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.contact-link:hover {
+    color: var(--color-white);
+}
+
+
+/* --- FAQs (Accordion) Styles --- */
+
+.accordion-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    border: 1px solid var(--color-divider);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.accordion-toggle {
+    display: none; 
+}
+
+.accordion-header {
+    display: block;
+    padding: 15px 20px;
+    background-color: var(--color-background-section);
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: 1.1em;
+    position: relative;
+    user-select: none;
+}
+
+.accordion-header::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 1.5em;
+    color: var(--color-primary);
+    transition: transform 0.3s;
+}
+
+.accordion-toggle:checked + .accordion-header::after {
+    content: '−';
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    background-color: var(--color-background-dark);
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s;
+}
+
+.accordion-toggle:checked ~ .accordion-content {
+    max-height: 200px; 
+    padding: 20px;
 }
