@@ -1,55 +1,79 @@
-# 🌟 hrs.jobs - Your Career Growth Hub
+# hrs.jobs - Free Job Board and Job Posting Platform
 
-**Website Link:** [www.hrs.jobs.xyz](http://www.hrs.jobs.xyz)
+A modern, dark-themed, and SEO-optimized multi-page website serving as a job board with a focus on free job posting for recruiters and a clean job search experience for candidates.
 
-## 💡 About hrs.jobs
+## 🌟 Features
 
-hrs.jobs is a free, simple, and professional platform dedicated to connecting talented job seekers with exceptional career opportunities. We believe that finding the right match shouldn't cost a fortune for companies, and job searching should be straightforward and effective for candidates.
+* **Multi-Page Structure:** Includes Home (`index.html`), About (`about.html`), Contact (`contact.html`), and FAQs (`faqs.html`).
+* **Modern Design:** Sleek, dark-themed aesthetic using pure CSS.
+* **Fully Responsive:** Optimized for desktop, tablet, and mobile devices (includes a responsive collapsible sidebar).
+* **Job Filtering:** Real-time client-side job search functionality on the homepage.
+* **SEO Optimized:** Aggressive keyword implementation across all pages to target "Free Job Posting," "Job Board," and "Remote Jobs."
+* **Clean Codebase:** Minimized redundant code, with all JavaScript functions consolidated into `script.js`.
 
-Our commitment is to be a **100% free** job posting platform for all companies.
+## 📂 Project Structure
 
-## 🤝 For Recruiters (Post a Job)
+hrs.jobs/
+├── index.html          # Homepage (Job Listings & Search)
+├── about.html          # About Us Page
+├── contact.html        # Contact Page (Email links)
+├── faqs.html           # Frequently Asked Questions (Accordion)
+├── styles.css          # Primary CSS styles
+├── script.js           # JavaScript for job filtering and sidebar functionality
+├── README.md           # This file
+└── assets/             # Directory for images (logos, etc.)
+└── logos/
+└── *.png       # Placeholder company logos
+## 🛠️ Setup and Installation
 
-Posting a job on hrs.jobs is easy and completely free. We handle the process via a dedicated email submission to ensure quality and control.
+This is a static HTML/CSS/JS website and requires no backend setup.
 
-### How to Post a Job:
+1.  **Clone the Repository:**
+    ```bash
+    git clone [Your Repository URL]
+    ```
+2.  **Navigate to the Directory:**
+    ```bash
+    cd hrs.jobs
+    ```
+3.  **Run Locally:**
+    Open the `index.html` file directly in any modern web browser (Chrome, Firefox, Edge).
 
-1.  **Compose an Email** to the job posting request address: `hrs.team.a@gmail.com`
-2.  **Subject Line:** Use a clear format, e.g., `JOB POSTING REQUEST | [Company Name] | [Job Title]`
-3.  **Include the following details in the email body:**
-    * **Job Title:** (e.g., Senior Full-Stack Developer)
-    * **Company Name:**
-    * **Job Description:** (Detailed description of responsibilities and requirements)
-    * **Salary Range:** (e.g., ₹5 LPA - ₹8 LPA / Confidential)
-    * **Experience Level:** (Fresher / Experienced / 2-5 years)
-    * **Location:** (e.g., Remote / Bangalore / Hybrid)
-4.  **Attach the Company Logo:** Please attach a high-resolution image of your company logo (preferably in PNG or JPG format). This logo will be visible on the job post.
+## 💡 Customization Guide
 
-Once received, our team will review the details and post the job within 24 hours.
+### 1. Job Data Management (`script.js`)
 
-## 🔎 For Job Seekers
+To add new job listings, edit the `jobData` array at the top of `script.js`:
 
-Our goal is to provide a clean and focused job listing experience.
+```javascript
+const jobData = [
+    // Add your new job object here:
+    {
+        id: 4,
+        title: "New Role Title",
+        company: "New Company Name",
+        logo: "assets/logos/new_logo.png", // Must exist in the assets/logos folder
+        experience: "Mid-Level (2-4 yrs)",
+        salary: "Negotiable",
+        location: "City, Country / Remote",
+        fresher: false,
+        keywords: "backend, python, django, remote",
+        applyLink: "[https://yourcompany.com/application-link](https://yourcompany.com/application-link)"
+    },
+    // ... existing jobs
+];
 
-* **Simple Search:** Easily filter jobs by title, experience, or company.
-* **Direct Application:** Click the 'Apply Now' button to be redirected to the company's application portal.
+2. Styling (styles.css)
+Colors and themes can be quickly modified by changing the variables in the :root block:
+:root {
+    --color-primary: #FFD833; /* Change this for main accent color */
+    --color-background-dark: #111111; /* Change this for main background */
+    --color-subscribe-cta: #E74C3C; /* Change this for the red CTA button */
+    /* ... other variables */
+}
 
-## ⚙️ Development & Technology Stack
-
-This platform is built using standard, modern web technologies for maximum accessibility and performance.
-
-* **HTML5:** Structure
-* **CSS3:** Styling (Minimalist, Black/White/Yellow Theme: `#FFD833`)
-* **JavaScript (Vanilla):** Interactivity and Job Filtering
-
----
-
-## 🔗 Social Connect
-
-Stay updated and connect with us on social media!
-
-| Platform | Link (Placeholder) |
-| :--- | :--- |
-| **WhatsApp** | `[Link to WhatsApp Group/Business]` |
-| **Instagram** | `[Link to Instagram Profile]` |
-| **YouTube** | `[Link to YouTube Channel]` |
+3. Contact Emails
+Ensure you update the placeholder email links in all HTML files:
+ * mailto:hrs.team.a@gmail.com (Used for job posting requests).
+ * [Your_Partnership_Email] (In contact.html).
+ * [Your_Support_Email] (In contact.html).
