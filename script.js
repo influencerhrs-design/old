@@ -1,377 +1,70 @@
-// --- 1. SAMPLE JOB DATA ---
-const jobData = [
+// 1. YOUR JOB DATABASE
+// Add new jobs here. The site will update automatically.
+const jobs = [
     {
-        id: 1,
-        title: "Senior Full-Stack Developer",
-        company: "TechSolutions Inc.",
-        logo: "assets/logos/techsolutions.png", 
-        experience: "Experienced (5+ yrs)",
-        salary: "₹18 LPA - ₹25 LPA",
-        location: "Bangalore, India",
-        fresher: false,
-        keywords: "react, nodejs, aws, senior, full-stack",
-        applyLink: "https://example.com/apply/techsolutions1"
+        title: "Digital Marketing Executive",
+        company: "Siliguri Ad Agency",
+        location: "Siliguri, West Bengal",
+        type: "Full-Time",
+        link: "mailto:hrs.team.a@gmail.com?subject=Application: Digital Marketing"
     },
     {
-        id: 2,
-        title: "Entry-Level Data Analyst",
-        company: "DataCo Analytics",
-        logo: "assets/logos/dataco.png",
-        experience: "Fresher (0-1 yr)",
-        salary: "₹3.5 LPA - ₹5 LPA",
+        title: "Remote Graphics Designer",
+        company: "GFDA Inspired Studio",
         location: "Remote",
-        fresher: true,
-        keywords: "data, analyst, fresher, sql, excel, remote",
-        applyLink: "https://example.com/apply/dataco2"
+        type: "Contract",
+        link: "mailto:hrs.team.a@gmail.com?subject=Application: Graphics Designer"
     },
     {
-        id: 3,
-        title: "Marketing Specialist",
-        company: "Global Commerce Ltd.",
-        logo: "assets/logos/globalcommerce.png",
-        experience: "Experienced (2-4 yrs)",
-        salary: "Confidential",
-        location: "Mumbai, India / Hybrid",
-        fresher: false,
-        keywords: "marketing, specialist, digital, content, seo, hybrid",
-        applyLink: "https://example.com/apply/globalcommerce3"
+        title: "Front-End Developer (HTML/CSS)",
+        company: "TechHub North Bengal",
+        location: "Siliguri (Pradhan Nagar)",
+        type: "Full-Time",
+        link: "mailto:hrs.team.a@gmail.com?subject=Application: Front-End Dev"
     }
 ];
 
-// Elements that might only exist on the index.html page
-const jobContainer = document.getElementById('jobContainer');
-const searchInput = document.getElementById('searchInput');
-const noJobsMessage = document.getElementById('noJobsMessage');
+// 2. CORE FUNCTIONS
+const jobContainer = document.getElementById('jobList');
+const searchInput = document.getElementById('jobSearch');
 
-// --- 2. SIDEBAR FUNCTIONS ---
+// Function to display jobs
+function displayJobs(jobsToRender) {
+    jobContainer.innerHTML = ''; // Clear current list
 
-function w3_open() {
-  const sidebar = document.getElementById("mySidebar");
-  const mainContent = document.getElementById("main-content");
-  const openNav = document.getElementById("openNav");
-  
-  sidebar.style.display = "block";
-
-  if (window.innerWidth <= 768) {
-    sidebar.style.width = "100%"; 
-    mainContent.style.marginLeft = "0";
-  } else {
-    sidebar.style.width = "300px"; 
-    mainContent.style.marginLeft = "300px";
-  }
-  
-  if (openNav) {
-    openNav.style.display = 'none';
-  }
-}
-
-function w3_close() {
-  const sidebar = document.getElementById("mySidebar");
-  const mainContent = document.getElementById("main-content");
-  const openNav = document.getElementById("openNav");
-
-  sidebar.style.width = "0";
-  mainContent.style.marginLeft= "0";
-  
-  setTimeout(() => {
-    sidebar.style.display = "none";
-  }, 500); // Matches the 0.5s transition in CSS
-  
-  if (openNav) {
-    openNav.style.display = 'block';
-  }
-}
-
-// --- 3. JOB LISTING FUNCTIONS (Only run on index.html) ---
-
-function renderJobs(jobs) {
-    if (!jobContainer) return; // Prevent error on other pages
-
-    jobContainer.innerHTML = ''; 
-    if (jobs.length === 0) {
-        if (noJobsMessage) noJobsMessage.style.display = 'block';
+    if (jobsToRender.length === 0) {
+        jobContainer.innerHTML = `<p class="no-results">No jobs found. Try "Remote" or "Siliguri".</p>`;
         return;
-    } else {
-        if (noJobsMessage) noJobsMessage.style.display = 'none';
     }
-    jobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.classList.add('job-card');
-        jobCard.innerHTML = `
-            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
-            <h3>${job.title}</h3>
-            <p class="company-name">${job.company}</p>
-            <div class="job-meta">
-                <span class="meta-tag">${job.location}</span>
-                <span class="meta-tag">${job.experience}</span>
-                <span class="meta-tag salary-tag">${job.salary}</span>
+
+    jobsToRender.forEach(job => {
+        const card = document.createElement('div');
+        card.className = `job-card ${job.location.includes('Remote') ? 'featured' : ''}`;
+        
+        card.innerHTML = `
+            <div class="job-info">
+                <h3>${job.title}</h3>
+                <p class="company">${job.company}</p>
+                <span class="location">📍 ${job.location} | <strong>${job.type}</strong></span>
             </div>
-            <div class="apply-link">
-                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
-            </div>
+            <a href="${job.link}" class="apply-btn">APPLY NOW</a>
         `;
-        jobContainer.appendChild(jobCard);
+        jobContainer.appendChild(card);
     });
 }
 
-function filterJobs() {
-    if (!searchInput) return; // Prevent error on other pages
-
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    if (!searchTerm) {
-        renderJobs(jobData); 
-        return;
-    }
-    const filteredJobs = jobData.filter(job => {
-        return job.title.toLowerCase().includes(searchTerm) ||
-               job.company.toLowerCase().includes(searchTerm) ||
-               job.location.toLowerCase().includes(searchTerm) ||
-               job.keywords.toLowerCase().includes(searchTerm);
-    });
-    renderJobs(filteredJobs);
-}
-
-// --- 4. INITIALIZATION ---
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initial sidebar setup 
-    const sidebar = document.getElementById("mySidebar");
-    if (sidebar) {
-      sidebar.style.display = "none";
-    }
+// 3. SEARCH LOGIC (Instant Filter)
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
     
-    // 2. Job filtering setup (only runs on the home page)
-    if (jobContainer) {
-      renderJobs(jobData);
-    }
+    const filteredJobs = jobs.filter(job => 
+        job.title.toLowerCase().includes(searchTerm) || 
+        job.company.toLowerCase().includes(searchTerm) ||
+        job.location.toLowerCase().includes(searchTerm)
+    );
     
-    if (searchInput) {
-      searchInput.addEventListener('input', filterJobs);
-    }
-});
-        fresher: false,
-        keywords: "marketing, specialist, digital, content, seo, hybrid",
-        applyLink: "https://example.com/apply/globalcommerce3"
-    }
-];
-
-const jobContainer = document.getElementById('jobContainer');
-const searchInput = document.getElementById('searchInput');
-const noJobsMessage = document.getElementById('noJobsMessage');
-
-// --- 2. RENDER JOB CARDS & FILTER JOBS (Kept from previous steps) ---
-function renderJobs(jobs) { /* ... (function body) ... */ }
-function filterJobs() { /* ... (function body) ... */ }
-document.addEventListener('DOMContentLoaded', () => { /* ... (initialization) ... */ });
-
-
-// --- 3. SIDEBAR FUNCTIONS (The new addition based on your request) ---
-
-function w3_open() {
-  const sidebar = document.getElementById("mySidebar");
-  const mainContent = document.getElementById("main-content");
-  
-  // Set sidebar width based on screen size
-  if (window.innerWidth <= 768) {
-    sidebar.style.width = "100%"; // Full width on mobile
-    mainContent.style.marginLeft = "0"; // Don't push content on mobile
-  } else {
-    sidebar.style.width = "300px"; // Fixed width on desktop
-    mainContent.style.marginLeft = "300px"; // Push main content
-  }
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main-content").style.marginLeft= "0";
-}
-
-// Re-defining the job functions here for the final cohesive script file
-function renderJobs(jobs) {
-    jobContainer.innerHTML = ''; 
-    if (jobs.length === 0) {
-        noJobsMessage.style.display = 'block';
-        return;
-    } else {
-        noJobsMessage.style.display = 'none';
-    }
-    jobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.classList.add('job-card');
-        jobCard.innerHTML = `
-            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
-            <h3>${job.title}</h3>
-            <p class="company-name">${job.company}</p>
-            <div class="job-meta">
-                <span class="meta-tag">${job.location}</span>
-                <span class="meta-tag">${job.experience}</span>
-                <span class="meta-tag salary-tag">${job.salary}</span>
-            </div>
-            <div class="apply-link">
-                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
-            </div>
-        `;
-        jobContainer.appendChild(jobCard);
-    });
-}
-
-function filterJobs() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    if (!searchTerm) {
-        renderJobs(jobData); 
-        return;
-    }
-    const filteredJobs = jobData.filter(job => {
-        return job.title.toLowerCase().includes(searchTerm) ||
-               job.company.toLowerCase().includes(searchTerm) ||
-               job.location.toLowerCase().includes(searchTerm) ||
-               job.keywords.toLowerCase().includes(searchTerm);
-    });
-    renderJobs(filteredJobs);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderJobs(jobData);
-    searchInput.addEventListener('input', filterJobs);
-});
-        keywords: "marketing, specialist, digital, content, seo, hybrid",
-        applyLink: "https://example.com/apply/globalcommerce3"
-    }
-];
-
-const jobContainer = document.getElementById('jobContainer');
-const searchInput = document.getElementById('searchInput');
-const noJobsMessage = document.getElementById('noJobsMessage');
-
-// --- 2. RENDER JOB CARDS ---
-function renderJobs(jobs) {
-    jobContainer.innerHTML = ''; 
-
-    if (jobs.length === 0) {
-        noJobsMessage.style.display = 'block';
-        return;
-    } else {
-        noJobsMessage.style.display = 'none';
-    }
-
-    jobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.classList.add('job-card');
-
-        jobCard.innerHTML = `
-            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
-            <h3>${job.title}</h3>
-            <p class="company-name">${job.company}</p>
-            <div class="job-meta">
-                <span class="meta-tag">${job.location}</span>
-                <span class="meta-tag">${job.experience}</span>
-                <span class="meta-tag salary-tag">${job.salary}</span>
-            </div>
-            <div class="apply-link">
-                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
-            </div>
-        `;
-        jobContainer.appendChild(jobCard);
-    });
-}
-
-// --- 3. FILTER JOBS (Search Functionality) ---
-function filterJobs() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-
-    if (!searchTerm) {
-        renderJobs(jobData); 
-        return;
-    }
-
-    const filteredJobs = jobData.filter(job => {
-        return job.title.toLowerCase().includes(searchTerm) ||
-               job.company.toLowerCase().includes(searchTerm) ||
-               job.location.toLowerCase().includes(searchTerm) ||
-               job.keywords.toLowerCase().includes(searchTerm);
-    });
-
-    renderJobs(filteredJobs);
-}
-
-// --- 4. INITIALIZATION ---
-// Load all jobs when the page first loads
-document.addEventListener('DOMContentLoaded', () => {
-    renderJobs(jobData);
-    
-    // Add event listener for real-time search (optional, for better UX)
-    searchInput.addEventListener('input', filterJobs);
-});
-        keywords: "marketing, specialist, digital, content, seo, hybrid",
-        applyLink: "https://example.com/apply/globalcommerce3"
-    }
-    // Add more jobs here after receiving posting requests via email
-];
-
-const jobContainer = document.getElementById('jobContainer');
-const searchInput = document.getElementById('searchInput');
-const noJobsMessage = document.getElementById('noJobsMessage');
-
-// --- 2. RENDER JOB CARDS ---
-function renderJobs(jobs) {
-    jobContainer.innerHTML = ''; // Clear previous jobs
-
-    if (jobs.length === 0) {
-        noJobsMessage.style.display = 'block';
-        return;
-    } else {
-        noJobsMessage.style.display = 'none';
-    }
-
-    jobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.classList.add('job-card');
-
-        // Note: The logo path is a placeholder. You would upload and store these logos
-        // on your server after the company emails them, then update the data array.
-        jobCard.innerHTML = `
-            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
-            <h3>${job.title}</h3>
-            <p class="company-name">${job.company}</p>
-            <div class="job-meta">
-                <span class="meta-tag">${job.location}</span>
-                <span class="meta-tag">${job.experience}</span>
-                <span class="meta-tag salary-tag">${job.salary}</span>
-            </div>
-            <div class="apply-link">
-                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
-            </div>
-        `;
-        jobContainer.appendChild(jobCard);
-    });
-}
-
-// --- 3. FILTER JOBS (Search Functionality) ---
-function filterJobs() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-
-    if (!searchTerm) {
-        renderJobs(jobData); // Show all jobs if search is empty
-        return;
-    }
-
-    const filteredJobs = jobData.filter(job => {
-        // Check job title, company name, location, and keywords
-        return job.title.toLowerCase().includes(searchTerm) ||
-               job.company.toLowerCase().includes(searchTerm) ||
-               job.location.toLowerCase().includes(searchTerm) ||
-               job.keywords.toLowerCase().includes(searchTerm);
-    });
-
-    renderJobs(filteredJobs);
-}
-
-// --- 4. INITIALIZATION ---
-// Load all jobs when the page first loads
-document.addEventListener('DOMContentLoaded', () => {
-    renderJobs(jobData);
-    
-    // Add event listener for real-time search (optional, for better UX)
-    searchInput.addEventListener('input', filterJobs);
+    displayJobs(filteredJobs);
 });
 
+// Initialize the board on load
+window.onload = () => displayJobs(jobs);
