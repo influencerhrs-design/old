@@ -1,107 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Free Job Posting Platform</title>
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Job Board</title>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Jobs<span style="color:var(--primary)">Portal</span></h1>
+            <a href="post-job.html" class="btn">Post a Job</a>
+        </header>
+        <div id="job-list"></div>
+    </div>
 
-<h1>Post a Job (Free)</h1>
-
-<form id="jobForm" action="submit-job.php" method="POST">
-  <label>Company Name</label>
-  <input type="text" name="company" required>
-
-  <label>Job Title</label>
-  <input type="text" name="title" required>
-
-  <label>Job Location</label>
-  <input type="text" name="location" required>
-
-  <label>Company Email (For CV)</label>
-  <input type="email" name="company_email" required>
-
-  <label>WhatsApp Number</label>
-  <input type="text" name="whatsapp" placeholder="91XXXXXXXXXX" required>
-
-  <label>Application Deadline</label>
-  <input type="date" name="deadline" required>
-
-  <label>Job Description</label>
-  <textarea name="description" required></textarea>
-
-  <button type="submit">Submit Job</button>
-</form>
-
-<hr>
-
-<h2>Available Jobs</h2>
-<div id="jobs"></div>
-
-<script src="script.js"></script>
-</body>
-</html>        <section id="jobs" class="job-board">
-            <div class="section-header">
-                <h2>LATEST VACANCIES</h2>
-                <span class="status-tag">Updated Today</span>
-            </div>
-
-            <div id="jobList" class="job-grid">
-                <div class="job-card">
-                    <div class="job-info">
-                        <h3>Full Stack Developer</h3>
-                        <p class="company">Siliguri Tech Solutions</p>
-                        <span class="location">📍 Remote / Siliguri</span>
-                    </div>
-                    <a href="#" class="apply-btn">VIEW DETAILS</a>
-                </div>
-
-                <div class="job-card featured">
-                    <div class="job-info">
-                        <h3>Marketing Manager</h3>
-                        <p class="company">Local Retail Group</p>
-                        <span class="location">📍 Siliguri, WB</span>
-                    </div>
-                    <a href="#" class="apply-btn">VIEW DETAILS</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="recruiters" class="recruiter-manifesto">
-            <div class="manifesto-box">
-                <h2>RECRUITERS: STOP PAYING FOR LEADS.</h2>
-                <p>Hire the best talent in West Bengal without spending a single Rupee on job ads.</p>
-                <a href="mailto:hrs.team.a@gmail.com?subject=Post a Job" class="huge-btn">EMAIL YOUR JOB POST NOW</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-top">
-            <div class="footer-brand">
-                <h3>hrs.jobs</h3>
-                <p>Built for the Siliguri Digital Economy.</p>
-            </div>
-            <div class="footer-links">
-                <div class="link-group">
-                    <h4>Navigate</h4>
-                    <a href="#">About</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                </div>
-                <div class="link-group">
-                    <h4>Social</h4>
-                    <a href="#">WhatsApp</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 HRS.JOBS | STARK MINIMALISM FOR MAXIMUM RESULTS.</p>
-        </div>
-    </footer>
-
+    <script>
+        fetch('jobs.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('job-list');
+                data.forEach(job => {
+                    if(job.approved) {
+                        container.innerHTML += `
+                            <div class="job-card">
+                                <h2>${job.title}</h2>
+                                <div class="meta">${job.company} • ${job.location} • Deadline: ${job.deadline}</div>
+                                <p>${job.description}</p>
+                                <div class="apply-links">
+                                    <a href="mailto:${job.company_email}" class="apply-mail">Apply by Email</a>
+                                    <a href="https://wa.me/${job.whatsapp}" target="_blank" class="apply-wa">Apply on WhatsApp</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            });
+    </script>
 </body>
 </html>
