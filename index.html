@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hrs.jobs | 100% Free Job Board Siliguri & Remote</title>
-    <meta name="description" content="Find top job vacancies in Siliguri and Remote roles. hrs.jobs is a 100% free job posting platform for recruiters and talent.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Free Job Posting Platform</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="logo-container">
-            <img src="https://i.ibb.co/zTmDxMBK/android-chrome-512x512.png" alt="hrs.jobs logo" class="site-logo">
-            <span class="logo-text">hrs.jobs</span>
-        </div>
-        <nav class="nav-links">
-            <a href="#jobs">Find Jobs</a>
-            <a href="#recruiters">Hire Staff</a>
-            <a href="mailto:hrs.team.a@gmail.com" class="cta-pill">Post Free →</a>
-        </nav>
-    </header>
+<h1>Post a Job (Free)</h1>
 
-    <main>
-        <section class="hero">
-            <h1 class="aggressive-title">STOP SEARCHING.<br><span class="highlight">START WORKING.</span></h1>
-            <p class="hero-subtext">The Siliguri job market is messy. We made it simple. 100% Free. No Bullsh*t.</p>
-            
-            <div class="search-container">
-                <input type="text" id="jobSearch" placeholder="Role (e.g. Designer, Sales, Remote)...">
-                <button class="search-btn">SEARCH JOBS</button>
-            </div>
-        </section>
+<form id="jobForm" action="submit-job.php" method="POST">
+  <label>Company Name</label>
+  <input type="text" name="company" required>
 
-        <section id="jobs" class="job-board">
+  <label>Job Title</label>
+  <input type="text" name="title" required>
+
+  <label>Job Location</label>
+  <input type="text" name="location" required>
+
+  <label>Company Email (For CV)</label>
+  <input type="email" name="company_email" required>
+
+  <label>WhatsApp Number</label>
+  <input type="text" name="whatsapp" placeholder="91XXXXXXXXXX" required>
+
+  <label>Application Deadline</label>
+  <input type="date" name="deadline" required>
+
+  <label>Job Description</label>
+  <textarea name="description" required></textarea>
+
+  <button type="submit">Submit Job</button>
+</form>
+
+<hr>
+
+<h2>Available Jobs</h2>
+<div id="jobs"></div>
+
+<script src="script.js"></script>
+</body>
+</html>        <section id="jobs" class="job-board">
             <div class="section-header">
                 <h2>LATEST VACANCIES</h2>
                 <span class="status-tag">Updated Today</span>
