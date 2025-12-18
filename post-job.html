@@ -1,118 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post a Job | hrs.jobs</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Small Code - Minimalist Row Style */
-        .form-row {
-            border-bottom: 1px solid #333;
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-        }
-        .form-row label {
-            color: #FFD833;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        .form-row input, .form-row textarea, .form-row select {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.1em;
-            outline: none;
-            width: 100%;
-        }
-        .form-row input::placeholder { color: #555; }
-        
-        /* The Submit Arrow Link style you liked */
-        .submit-area {
-            margin-top: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .btn-submit-link {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 0;
-        }
-        .btn-submit-link:hover { color: #FFD833; }
-        .arrow-icon { color: #FFD833; }
-    </style>
+<title>Post Job | JobsPortal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px; background-color: #121212; color: white;}
+.theme-yellow { color: #FFD833 !important; }
+.bg-yellow { background-color: #FFD833 !important; color: black !important; }
+.w3-sidebar { background-color: #FFD833 !important; color: black !important; font-weight:bold; }
+input, textarea { background-color: #1e1e1e !important; color: white !important; border: 1px solid #333 !important; padding: 12px !important;}
+</style>
 </head>
-<body class="dark-theme">
+<body>
 
-    <div id="main-content" class="main-content">
-        <header>
-            <div class="header-left">
-                <a href="index.html" style="text-decoration:none; color:white;">
-                    <span class="logo-hrs">hrs.</span><span class="logo-jobs">jobs portal</span>
-                </a>
-            </div>
-        </header>
+<nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container"><h3 class="w3-padding-64"><b>Jobs<br>Portal</b></h3></div>
+  <div class="w3-bar-block">
+    <a href="index.html" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#" class="w3-bar-item w3-button w3-hover-white theme-yellow">Post a Job</a> 
+  </div>
+</nav>
 
-        <section class="container" style="padding-top: 60px; padding-bottom: 100px;">
-            <h1 style="font-size: 3em; margin-bottom: 10px;">Post <span style="color:#FFD833;">Job.</span></h1>
-            <p style="color: #888; margin-bottom: 40px;">100% Free Recruitment. No accounts needed.</p>
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  <div class="w3-container" style="margin-top:80px">
+    <h1 class="w3-jumbo"><b>Post a Job</b></h1>
+    <h1 class="w3-xxxlarge theme-yellow"><b>Free Recruitment.</b></h1>
+    <hr style="width:50px;border:5px solid #FFD833" class="w3-round">
+  </div>
 
-            <form action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
-                
-                <div class="form-row">
-                    <label>Company</label>
-                    <input type="text" name="company" placeholder="Name of your brand" required>
-                </div>
+  <div class="w3-container">
+    <form action="submit-job.php" method="POST">
+      <div class="w3-section"><label>Company Name</label><input class="w3-input w3-border" type="text" name="company" required></div>
+      <div class="w3-section"><label>Job Title</label><input class="w3-input w3-border" type="text" name="title" required></div>
+      <div class="w3-section"><label>Location</label><input class="w3-input w3-border" type="text" name="location" required></div>
+      <div class="w3-section"><label>Email (For CVs)</label><input class="w3-input w3-border" type="email" name="email" required></div>
+      <div class="w3-section"><label>WhatsApp (with country code, e.g. 91...)</label><input class="w3-input w3-border" type="text" name="whatsapp" required></div>
+      <div class="w3-section"><label>Deadline</label><input class="w3-input w3-border" type="date" name="deadline" required></div>
+      <div class="w3-section"><label>Description</label><textarea class="w3-input w3-border" name="description" rows="5" required></textarea></div>
+      <button type="submit" class="w3-button w3-block w3-padding-large bg-yellow">Submit Job</button>
+    </form>  
+  </div>
+</div>
 
-                <div class="form-row">
-                    <label>Job Title</label>
-                    <input type="text" name="title" placeholder="Position name" required>
-                </div>
-
-                <div class="form-row">
-                    <label>WhatsApp / Mobile</label>
-                    <input type="text" name="whatsapp" placeholder="Include country code" required>
-                </div>
-
-                <div class="form-row">
-                    <label>Email Address</label>
-                    <input type="email" name="email" placeholder="Recruiter email" required>
-                </div>
-
-                <div class="form-row">
-                    <label>Description</label>
-                    <textarea name="description" rows="3" placeholder="Briefly explain the role..." required></textarea>
-                </div>
-
-                <div class="submit-area">
-                    <button type="submit" class="btn-submit-link">
-                        CONFIRM SUBMISSION <span class="arrow-icon">▶</span>
-                    </button>
-                </div>
-
-            </form>
-        </section>
-
-        <footer class="dark-footer">
-            <div class="container footer-grid">
-                <div class="footer-col">
-                   <p style="font-size: 0.8em; color: #555;">© 2025 hrs.jobs | Powered by hrsdesign</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
+<script>
+function w3_open() { document.getElementById("mySidebar").style.display = "block"; }
+function w3_close() { document.getElementById("mySidebar").style.display = "none"; }
+</script>
 </body>
-</html>
+          </html>
